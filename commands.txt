@@ -1,0 +1,5 @@
+dvc stage add --run -v -f -n download \
+                          -p data.year \
+                          -p data.n_locs \
+                          -d src/download.py \
+                          -o data/ \

@@ -1,0 +1,34 @@
+stages:
+  download:
+    cmd: python src/download.py
+    deps:
+    - src/download.py
+    params:
+    - data.n_locs
+    - data.year
+    outs:
+    - data/
+  prepare:
+    cmd: python src/prepare.py
+    deps:
+    - data/
+    - src/prepare.py
+    outs:
+    - outputs/
+  process:
+    cmd: python src/process.py
+    deps:
+    - data/
+    - outputs/
+    - src/process.py
+    outs:
+    - outputs_computed/
+  evaluate:
+    cmd: python src/evaluate.py
+    deps:
+    - outputs/
+    - outputs_computed/
+    - src/evaluate.py
+    metrics:
+    - metrics/r2_score.json:
+        cache: false

@@ -2,6 +2,6 @@ dvc stage add --run -v -f -n download -p data.year -p data.n_locs -d src/downloa
 
 dvc stage add --run -v -f -n prepare -d src/prepare.py -d data/ -o outputs/ python src/prepare.py
 
-dvc stage add --run -v -f -n process -d src/process.py -d data/ -o outputs_computed/ python src/process.py
+dvc stage add --run -v -f -n process -d src/process.py -d data/ -d outputs/ -o outputs_computed/ python src/process.py
 
-dvc stage add --run -v -f -n evaluate -d src/evaluate.py -d data/ -M metrics/r2_score.json python src/evaluate.py
+dvc stage add --run -v -f -n evaluate -d src/evaluate.py -d outputs/ -d outputs_computed/ -M metrics/r2_score.json python src/evaluate.py

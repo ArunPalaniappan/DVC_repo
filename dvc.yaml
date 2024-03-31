@@ -5,6 +5,7 @@ stages:
     - src/download.py
     params:
     - data.n_locs
+    - data.seed
     - data.year
     outs:
     - data/

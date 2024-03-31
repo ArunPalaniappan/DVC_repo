@@ -19,20 +19,20 @@ def fetch_links(base_url, year):
     list_of_links = []
     if response.status_code == 200:
         soup = BeautifulSoup(response.content, 'html.parser')
-        links = soup.find_all('a')
         
-        for link in links:
-            href = link.get('href')
-            if href:
-                absolute_url = urljoin(base_url_year, href)
-                if ".csv" in absolute_url:
+        for line in soup.get_text().split('\n'):
+            if 'M' in line:
+                if float(line.split(' ')[-1].split('M')[0].strip()) > 45.0:
+                    file_name = line.split(' ')[0].split('.csv')[0] + '.csv'      
+                    absolute_url = urljoin(base_url_year, file_name)
                     list_of_links.append(absolute_url)
 
         return list_of_links
     
 # Function to randomly sample links from the list of all available links
-random.seed(8)
-def random_links(list_of_links, no_of_links):
+
+def random_links(list_of_links, no_of_links, seed_value):
+    random.seed(seed_value)
     links_to_fetch = random.sample(list_of_links, no_of_links)
     return links_to_fetch
 
@@ -63,9 +63,11 @@ with open(r"C:\Users\91979\Desktop\Jup_NoteBks\BDL\Asgt_3\example\DVC_repo\param
 base_url = "https://www.ncei.noaa.gov/data/local-climatological-data/access/"
 year = str(params['data']['year'])
 no_of_links = params['data']['n_locs']
+seed_value = params['data']['seed']
+
 folder = rf"C:\Users\91979\Desktop\Jup_NoteBks\BDL\Asgt_3\example\DVC_repo\data"
 create_folder(folder)
 
 list_of_links = fetch_links(base_url, year)
-links_to_fetch = random_links(list_of_links, no_of_links)
+links_to_fetch = random_links(list_of_links, no_of_links, seed_value)
 download_files(links_to_fetch, folder)

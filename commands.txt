@@ -1,4 +1,4 @@
-dvc stage add --run -v -f -n download -p data.year -p data.n_locs -d src/download.py -o data/ python src/download.py
+dvc stage add --run -v -f -n download -p data.year -p data.n_locs -p data.seed -d src/download.py -o data/ python src/download.py
 
 dvc stage add --run -v -f -n prepare -d src/prepare.py -d data/ -o outputs/ python src/prepare.py
 

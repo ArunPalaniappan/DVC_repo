@@ -10,21 +10,21 @@ stages:
     params:
       params.yaml:
         data.n_locs: 2
-        data.seed: 38
+        data.seed: 18
         data.year: 2023
     outs:
     - path: data/
       hash: md5
-      md5: 9aaa143d02fa190fac6bc255649a02a4.dir
-      size: 96337562
+      md5: befeef85b0ba4c7040064df314f5e622.dir
+      size: 95994768
       nfiles: 2
   prepare:
     cmd: python src/prepare.py
     deps:
     - path: data/
       hash: md5
-      md5: 9aaa143d02fa190fac6bc255649a02a4.dir
-      size: 96337562
+      md5: befeef85b0ba4c7040064df314f5e622.dir
+      size: 95994768
       nfiles: 2
     - path: src/prepare.py
       hash: md5
@@ -33,21 +33,21 @@ stages:
     outs:
     - path: outputs/
       hash: md5
-      md5: d33919edd7de8845a6c5bf1a2ea0c346.dir
-      size: 312
+      md5: c31cb52b4bdabb8063053d2960ebc6db.dir
+      size: 314
       nfiles: 3
   process:
     cmd: python src/process.py
     deps:
     - path: data/
       hash: md5
-      md5: 9aaa143d02fa190fac6bc255649a02a4.dir
-      size: 96337562
+      md5: befeef85b0ba4c7040064df314f5e622.dir
+      size: 95994768
       nfiles: 2
     - path: outputs/
       hash: md5
-      md5: d33919edd7de8845a6c5bf1a2ea0c346.dir
-      size: 312
+      md5: c31cb52b4bdabb8063053d2960ebc6db.dir
+      size: 314
       nfiles: 3
     - path: src/process.py
       hash: md5
@@ -56,21 +56,21 @@ stages:
     outs:
     - path: outputs_computed/
       hash: md5
-      md5: 7aca3baf963267c4268ba023f5ec3823.dir
-      size: 546
+      md5: d69391c3089263b873e616f4191b9278.dir
+      size: 527
       nfiles: 2
   evaluate:
     cmd: python src/evaluate.py
     deps:
     - path: outputs/
       hash: md5
-      md5: d33919edd7de8845a6c5bf1a2ea0c346.dir
-      size: 312
+      md5: c31cb52b4bdabb8063053d2960ebc6db.dir
+      size: 314
       nfiles: 3
     - path: outputs_computed/
       hash: md5
-      md5: 7aca3baf963267c4268ba023f5ec3823.dir
-      size: 546
+      md5: d69391c3089263b873e616f4191b9278.dir
+      size: 527
       nfiles: 2
     - path: src/evaluate.py
       hash: md5
@@ -79,5 +79,5 @@ stages:
     outs:
     - path: metrics/r2_score.json
       hash: md5
-      md5: e701077f30d12edc1c6503e7deaf696d
+      md5: 04d40374f487b6b5a22cf4ce561738cb
       size: 44

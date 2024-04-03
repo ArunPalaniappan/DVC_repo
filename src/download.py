@@ -6,10 +6,9 @@ import yaml
 import random
 import os
 
-
 #---------------------------------------------------------------------------------------------#
 
-# This function accepts the year as input and retrieves all the links of the files available in that year
+# This function accepts the year as input and retrieves all the links of the files available in that year which are high in size
 def fetch_links(base_url, year):
     url = f"{base_url}{year}/"
 
@@ -29,14 +28,13 @@ def fetch_links(base_url, year):
 
         return list_of_links
     
-# Function to randomly sample links from the list of all available links
-
+# Function to randomly sample links from the list of all available links using the see value in params.yaml file
 def random_links(list_of_links, no_of_links, seed_value):
     random.seed(seed_value)
     links_to_fetch = random.sample(list_of_links, no_of_links)
     return links_to_fetch
 
-# Function to download all the required files using wget, and place it in the required folder
+# Function to download all the required files using urlretrieve, and place it in the required folder.
 def download_files(links_to_fetch, folder):
     os.makedirs(folder, exist_ok=True)
         
@@ -44,6 +42,7 @@ def download_files(links_to_fetch, folder):
         filename = folder + "/" + url.split("/")[-1]
         urllib.request.urlretrieve(url, filename)
 
+# Fucntion to create folders in the required path
 def create_folder(folder_path):
     if os.path.exists(folder_path):
         for root, dirs, files in os.walk(folder_path, topdown=False):
@@ -56,6 +55,7 @@ def create_folder(folder_path):
 
 #---------------------------------------------------------------------------------------------#
 
+# Reading the params.yaml file
 with open(r"C:\Users\91979\Desktop\Jup_NoteBks\BDL\Asgt_3\example\DVC_repo\params.yaml", 'r') as f:
     params = yaml.safe_load(f)
 
@@ -68,6 +68,7 @@ seed_value = params['data']['seed']
 folder = rf"C:\Users\91979\Desktop\Jup_NoteBks\BDL\Asgt_3\example\DVC_repo\data"
 create_folder(folder)
 
+# Running the functions
 list_of_links = fetch_links(base_url, year)
 links_to_fetch = random_links(list_of_links, no_of_links, seed_value)
 download_files(links_to_fetch, folder)

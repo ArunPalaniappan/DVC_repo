@@ -2,6 +2,7 @@ import pandas as pd
 import numpy as np
 import os
 
+# Function to create folders in the required path
 def create_folder(folder_path):
     if os.path.exists(folder_path):
         for root, dirs, files in os.walk(folder_path, topdown=False):
@@ -17,6 +18,7 @@ create_folder(compute_folder)
 
 list_of_fields_dict = {}
 
+# Reading the list_of_fields.txt file and extracting its contents
 with open(rf"C:\Users\91979\Desktop\Jup_NoteBks\BDL\Asgt_3\example\DVC_repo\outputs\list_of_fields.txt", 'r') as file:
     for line in file:
         line = line.strip()
@@ -28,6 +30,7 @@ with open(rf"C:\Users\91979\Desktop\Jup_NoteBks\BDL\Asgt_3\example\DVC_repo\outp
 
 directory = rf'C:\Users\91979\Desktop\Jup_NoteBks\BDL\Asgt_3\example\DVC_repo\data'
 
+# Computing the averages of the fields in list_of_fields.txt file
 def compute_averages(file_path, filename, list_of_fields_dict):
     data = pd.read_csv(file_path)
     data['DATE'] = pd.to_datetime(data['DATE'])
@@ -41,6 +44,7 @@ def compute_averages(file_path, filename, list_of_fields_dict):
 
     return computed_df
 
+# Storing the computed averages
 for filename in os.listdir(directory):
     file_path = os.path.join(directory, filename)
 

@@ -5,8 +5,8 @@ stages:
     deps:
     - path: src/download.py
       hash: md5
-      md5: 8b8b36e9220d1089a6b9a06352b4db55
-      size: 2829
+      md5: 882523591be51d5590d178ded36f1672
+      size: 3004
     params:
       params.yaml:
         data.n_locs: 2
@@ -28,8 +28,8 @@ stages:
       nfiles: 2
     - path: src/prepare.py
       hash: md5
-      md5: a1527f7e1912c4a551cf1b60c0919423
-      size: 2236
+      md5: 59f9747819422d67ade4a31aadd944dc
+      size: 2481
     outs:
     - path: outputs/
       hash: md5
@@ -51,8 +51,8 @@ stages:
       nfiles: 3
     - path: src/process.py
       hash: md5
-      md5: 356206d5cab66b41cd260086628ec967
-      size: 1693
+      md5: 4026fde82729e4e69df7db262d8520d6
+      size: 1911
     outs:
     - path: outputs_computed/
       hash: md5
@@ -74,8 +74,8 @@ stages:
       nfiles: 2
     - path: src/evaluate.py
       hash: md5
-      md5: 9211583582030f8dff8a1d36ac675763
-      size: 1219
+      md5: b0cdfee799028b190838bc0c1577fc03
+      size: 1395
     outs:
     - path: metrics/r2_score.json
       hash: md5

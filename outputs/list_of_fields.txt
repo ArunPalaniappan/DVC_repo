@@ -1,0 +1,2 @@
+99999904136.csv:DepartureFromNormalAverageTemperature
+99999912987.csv:DepartureFromNormalAverageTemperature
